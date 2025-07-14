@@ -73,7 +73,6 @@ require_once "../inc/navbar.php";
                 } else {
                     $img_path = $main_img;
                 }
-                // Si c'est l'image par défaut, utiliser l'image de la catégorie
                 if ($main_img == '../assets/images/default.jpg') {
                     $cat_img = strtolower($all_objets[$i]['nom_categorie']) . '.png';
                     $cat_img_path = '../assets/images/' . $cat_img;
@@ -84,21 +83,49 @@ require_once "../inc/navbar.php";
                 $is_disponible = ($all_objets[$i]['date_retour'] == '' || $all_objets[$i]['date_retour'] == null);
             ?>
                 <div class="col">
-<a href="objet.php?id=<?php echo $all_objets[$i]['id_objet']; ?>" class="text-decoration-none text-dark">
     <div class="card h-100 shadow-sm <?php if (!$is_disponible) echo 'border-danger'; ?>">
-        <img src="<?php echo $img_path; ?>" class="card-img-top" alt="<?php echo $all_objets[$i]['nom_objet']; ?>">
+        <a href="objet.php?id=<?php echo $all_objets[$i]['id_objet']; ?>" class="text-decoration-none text-dark">
+            <img src="<?php echo $img_path; ?>" class="card-img-top" alt="<?php echo $all_objets[$i]['nom_objet']; ?>">
+        </a>
         <div class="card-body">
-            <h5 class="card-title"><?php echo $all_objets[$i]['nom_objet']; ?></h5>
+            <a href="objet.php?id=<?php echo $all_objets[$i]['id_objet']; ?>" class="text-decoration-none text-dark">
+                <h5 class="card-title"><?php echo $all_objets[$i]['nom_objet']; ?></h5>
+            </a>
             <p class="card-text"><span class="badge bg-secondary"><?php echo $all_objets[$i]['nom_categorie']; ?></span></p>
-            <?php if (!$is_disponible && $all_objets[$i]['date_retour'] != '') { ?>
-                <p class="card-text"><span style="color: red;">Date de retour : <?php echo $all_objets[$i]['date_retour']; ?></span></p>
+            <?php if (!$is_disponible && $all_objets[$i]['date_retour'] != '') { 
+                $date_retour = $all_objets[$i]['date_retour'];
+                $now = date('Y-m-d');
+                $diff = (strtotime($date_retour) - strtotime($now)) / (60*60*24);
+                if ($diff < 0) {
+            ?>
+                <p class="card-text"><span style="color: red;">Date de retour : <?php echo $date_retour; ?> (délai dépassé)</span></p>
+            <?php } else { ?>
+                <p class="card-text"><span style="color: red;">Date de retour : <?php echo $date_retour; ?> (<?php echo intval($diff); ?> jour<?php if (intval($diff) > 1) echo 's'; ?> restant<?php if (intval($diff) > 1) echo 's'; ?>)</span></p>
+            <?php } } ?>
+            <?php if ($is_disponible) { ?>
+                <button type="button" class="btn btn-success btn-sm mt-2"
+                    onclick="document.getElementById('form-emprunt-<?php echo $id_objet; ?>').style.display='block'; this.style.display='none';">
+                    Emprunter
+                </button>
+                <form method="post" action="../inc/traitements/traitement-emprunt.php"
+                    id="form-emprunt-<?php echo $id_objet; ?>" style="display:none;" class="mt-2">
+                    <input type="hidden" name="id_objet" value="<?php echo $id_objet; ?>">
+                    <label for="duree-<?php echo $id_objet; ?>" class="form-label mb-0">Durée :</label>
+                    <select name="duree" id="duree-<?php echo $id_objet; ?>"
+                        class="form-select form-select-sm d-inline-block w-auto ms-1">
+                        <?php for ($d = 1; $d <= 5; $d++) { ?>
+                            <option value="<?php echo $d; ?>"><?php echo $d; ?> jour<?php if ($d > 1) echo 's'; ?></option>
+                        <?php } ?>
+                    </select>
+                    <button type="submit" class="btn btn-primary btn-sm ms-2">Valider</button>
+                </form>
             <?php } ?>
         </div>
     </div>
-</a>
 </div>
             <?php } ?>
         </div>
     </div>
 </body>
 </html>
+<script>

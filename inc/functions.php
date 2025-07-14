@@ -90,12 +90,16 @@ function get_image_principale($id_objet) {
 
 function objet_membre($id_membre) {
     $bdd = db_connect();
-    $sql = "SELECT COUNT(*) as nb FROM Ex_objet WHERE id_membre = $id_membre";
+    $sql = "SELECT o.id_objet, o.nom_objet, c.nom_categorie FROM Ex_objet o JOIN Ex_categorie_objet c ON o.id_categorie = c.id_categorie WHERE o.id_membre = $id_membre ORDER BY c.nom_categorie, o.nom_objet";
     $res = mysqli_query($bdd, $sql);
-    if ($res && $row = mysqli_fetch_assoc($res)) {
-        return $row['nb'] > 0;
+    $objets = array();
+    while ($row = mysqli_fetch_assoc($res)) {
+        $objets[$row['nom_categorie']][] = [
+            'id_objet' => $row['id_objet'],
+            'nom_objet' => $row['nom_objet']
+        ];
     }
-    return false;
+    return $objets;
 }
 
 ?>

@@ -7,6 +7,11 @@ require_once "header.php";
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+    <?php if (isset($_SESSION['nom'])) { ?>
+        <span class="navbar-text ms-3 text-white fw-bold">
+          <?php echo $_SESSION['nom']; ?>
+        </span>
+      <?php } ?>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
@@ -25,6 +30,7 @@ require_once "header.php";
           <a class="nav-link" href="../pages/fiche-personne.php">Profil</a>
         </li>
       </ul>
+     
     </div>
   </div>
 </nav>

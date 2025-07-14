@@ -17,12 +17,7 @@ $res = mysqli_query($bdd, $sql);
 $membre = mysqli_fetch_assoc($res);
 
 // Récupérer les objets du membre, regroupés par catégorie
-$sql_obj = "SELECT c.nom_categorie, o.nom_objet FROM Ex_objet o JOIN Ex_categorie_objet c ON o.id_categorie = c.id_categorie WHERE o.id_membre = $id_membre ORDER BY c.nom_categorie, o.nom_objet";
-$res_obj = mysqli_query($bdd, $sql_obj);
-$objets = array();
-while ($row = mysqli_fetch_assoc($res_obj)) {
-    $objets[$row['nom_categorie']][] = $row['nom_objet'];
-}
+$objets = objet_membre($id_membre);
 ?>
 <body class="bg-light">
     <div class="container py-5">
@@ -44,14 +39,14 @@ while ($row = mysqli_fetch_assoc($res_obj)) {
                 </div>
                 <div class="card shadow p-4">
                     <h4 class="mb-3">Objets ajoutés par vous (regroupés par catégorie)</h4>
-                    <?php if (!objet_membre($id_membre)) { ?>
+                    <?php if (count($objets) == 0) { ?>
                         <div class="text-muted">Aucun objet ajouté.</div>
                     <?php } else { ?>
                         <?php foreach ($objets as $cat => $liste) { ?>
                             <h5 class="mt-3"><?php echo $cat; ?></h5>
                             <ul>
                                 <?php foreach ($liste as $obj) { ?>
-                                    <li><?php echo $obj; ?></li>
+                                    <li><a href="objet.php?id=<?php echo $obj['id_objet']; ?>"><?php echo $obj['nom_objet']; ?></a></li>
                                 <?php } ?>
                             </ul>
                         <?php } ?>

@@ -39,3 +39,7 @@
    - [ ] Afficher les infos du membre
    - [ ] Afficher les objets du membre regroupés par catégorie
 
+10 alea 
+
+bouton emprunter -> champ pour la duree
+nombre de jour restant 
