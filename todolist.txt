@@ -6,19 +6,36 @@
    - [X ] Créer la table emprunt (id_emprunt, id_objet, id_membre, date_emprunt, date_retour)
 
 2. Insertion de données de test
-   - [ ] Insérer 4 membres
-   - [ ] Insérer 4 catégories (esthétique, bricolage, mécanique, cuisine)
-   - [ ] Insérer 10 objets par membre (répartis sur les catégories)
-   - [ ] Insérer 10 emprunts
+   - [X ] Insérer 4 membres
+   - [X ] Insérer 4 catégories (esthétique, bricolage, mécanique, cuisine)
+   - [X ] Insérer 10 objets par membre (répartis sur les catégories)
+   - [ X] Insérer 10 emprunts
 
 3. Développement des pages principales
    - [ ] Page d'inscription
-   - [ ] Page de login
-   - [ ] Page de liste des objets (afficher date de retour si emprunt en cours)
-   - [ ] Filtre par catégorie sur la liste des objets
+   - [ X] Page de login
+   - [ X] Page de liste des objets (afficher date de retour si emprunt en cours)
+   - [ X] Filtre par catégorie sur la liste des objets
 
-4. Tests et vérifications
-   - [ ] Vérifier la cohérence des données
-   - [ ] Tester l'inscription et la connexion
-   - [ ] Tester l'affichage et le filtrage des objets
-   - [ ] Tester l'affichage des emprunts en cours 
+5. Amélioration du design
+   - [ ] Moderniser et harmoniser le design avec Bootstrap (pages, formulaires, cards, navigation, etc.)
+
+6. Ajout d’un nouvel objet par un membre
+   - [ ] Permettre l’ajout d’un objet avec upload de plusieurs images
+   - [ ] Enregistrer la première image comme image principale
+   - [ ] Afficher l’image principale dans la liste des objets
+   - [ ] Permettre la suppression d’images d’un objet
+   - [ ] Afficher une image par défaut si aucune image n’est présente
+
+7. Fiche objet détaillée
+   - [ ] Lors d’un clic sur un objet, afficher la fiche détaillée (image principale, autres images, historique des emprunts)
+
+8. Recherche avancée sur la liste des objets
+   - [ ] Filtrer par catégorie (zone de liste)
+   - [ ] Filtrer par nom de l’objet (champ texte)
+   - [ ] Case à cocher pour afficher uniquement les objets disponibles
+
+9. Fiche membre détaillée
+   - [ ] Afficher les infos du membre
+   - [ ] Afficher les objets du membre regroupés par catégorie
+
