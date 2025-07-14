@@ -18,6 +18,9 @@ require_once "header.php";
         <li class="nav-item">
           <a class="nav-link" href="liste.php">Liste des objets</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="formulaire-ajout.php">Ajouter</a>
+        </li>
       </ul>
     </div>
   </div>
