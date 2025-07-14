@@ -21,6 +21,9 @@ require_once "header.php";
         <li class="nav-item">
           <a class="nav-link" href="formulaire-ajout.php">Ajouter</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../pages/fiche-personne.php">Profil</a>
+        </li>
       </ul>
     </div>
   </div>

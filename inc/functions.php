@@ -60,6 +60,23 @@ function filter_objets_by_categorie($objets, $categorie) {
     return $result;
 }
 
+function recherche($objets, $categorie = '', $nom = '', $disponible_uniquement = false) {
+    $result = array();
+    foreach ($objets as $obj) {
+        if ($categorie != '' && $obj['nom_categorie'] != $categorie) {
+            continue;
+        }
+        if ($nom != '' && stripos($obj['nom_objet'], $nom) === false) {
+            continue;
+        }
+        if ($disponible_uniquement && !($obj['date_retour'] == '' || $obj['date_retour'] == null)) {
+            continue;
+        }
+        $result[] = $obj;
+    }
+    return $result;
+}
+
 function get_image_principale($id_objet) {
     $bdd = db_connect();
     $sql = "SELECT nom_image FROM Ex_images_objet WHERE id_objet = $id_objet AND is_principale = 1 LIMIT 1";
@@ -70,4 +87,15 @@ function get_image_principale($id_objet) {
         return '../assets/images/default.jpg';
     }
 }
+
+function objet_membre($id_membre) {
+    $bdd = db_connect();
+    $sql = "SELECT COUNT(*) as nb FROM Ex_objet WHERE id_membre = $id_membre";
+    $res = mysqli_query($bdd, $sql);
+    if ($res && $row = mysqli_fetch_assoc($res)) {
+        return $row['nb'] > 0;
+    }
+    return false;
+}
+
 ?>

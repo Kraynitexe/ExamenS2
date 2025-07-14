@@ -2,6 +2,7 @@
 session_start();
 require_once '../inc/header.php';
 require_once '../inc/functions.php';
+require_once "../inc/navbar.php";
 
 if (!isset($_SESSION['id_membre'])) {
     echo '<div class="alert alert-danger">Vous devez être connecté pour accéder à votre fiche.</div>';
@@ -42,8 +43,8 @@ while ($row = mysqli_fetch_assoc($res_obj)) {
                     </ul>
                 </div>
                 <div class="card shadow p-4">
-                    <h4 class="mb-3">Objets par catégorie</h4>
-                    <?php if (count($objets) == 0) { ?>
+                    <h4 class="mb-3">Objets ajoutés par vous (regroupés par catégorie)</h4>
+                    <?php if (!objet_membre($id_membre)) { ?>
                         <div class="text-muted">Aucun objet ajouté.</div>
                     <?php } else { ?>
                         <?php foreach ($objets as $cat => $liste) { ?>
