@@ -52,10 +52,16 @@ require_once "../inc/navbar.php";
             </div>
         </form>
         <div class="row row-cols-1 row-cols-md-3 g-4 mb-5">
-            <?php for ($i = 0; $i < count($objets_disponibles); $i++) { ?>
+            <?php for ($i = 0; $i < count($objets_disponibles); $i++) { 
+                $cat_img = strtolower($objets_disponibles[$i]['nom_categorie']) . '.png';
+                $img_path = '../assets/images/' . $cat_img;
+                if (!file_exists($img_path)) {
+                    $img_path = '../assets/images/default.jpg';
+                }
+            ?>
                 <div class="col">
     <div class="card h-100 shadow-sm">
-        <img src="<?php echo $objets_disponibles[$i]['nom_image']; ?>" class="card-img-top" alt="<?php echo $objets_disponibles[$i]['nom_objet']; ?>">
+        <img src="<?php echo $img_path; ?>" class="card-img-top" alt="<?php echo $objets_disponibles[$i]['nom_objet']; ?>"">
         <div class="card-body">
             <h5 class="card-title"><?php echo $objets_disponibles[$i]['nom_objet']; ?></h5>
             <p class="card-text"><span class="badge bg-secondary"><?php echo $objets_disponibles[$i]['nom_categorie']; ?></span></p>
