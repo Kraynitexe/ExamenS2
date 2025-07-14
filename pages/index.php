@@ -24,4 +24,7 @@ require_once "../inc/header.php";
             </div>
         </div>
     </div>
+    <?php 
+    require_once '../inc/footer.php';
+    ?>
 </body>

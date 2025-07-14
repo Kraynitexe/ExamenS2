@@ -37,6 +37,7 @@ CREATE TABLE Ex_emprunt (
     id_membre INT,
     date_emprunt DATE,
     date_retour DATE,
+    etat_retour VARCHAR(50);
     FOREIGN KEY (id_objet) REFERENCES Ex_objet(id_objet),
     FOREIGN KEY (id_membre) REFERENCES Ex_membre(id_membre)
 );

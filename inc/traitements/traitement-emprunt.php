@@ -17,6 +17,13 @@ if (isset($_POST['id_objet']) && isset($_POST['duree'])) {
     $date_retour = date('Y-m-d', strtotime("+$duree days"));
 
     $bdd = db_connect();
+    $verif = mysqli_query($bdd, "SELECT 1 FROM Ex_emprunt WHERE id_objet = $id_objet AND (date_retour IS NULL OR date_retour >= CURDATE())");
+    if (mysqli_num_rows($verif) > 0) {
+        echo '<div style="color:red; font-weight:bold;">Cet objet est déjà emprunté.</div>';
+        echo '<a href="../../pages/liste.php">Retour à la liste</a>';
+        exit;
+    }
+
     $sql = "INSERT INTO Ex_emprunt (id_objet, id_membre, date_emprunt, date_retour) VALUES ($id_objet, $id_membre, '$date_emprunt', '$date_retour')";
     $res = mysqli_query($bdd, $sql);
     if ($res) {

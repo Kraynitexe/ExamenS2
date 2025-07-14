@@ -102,4 +102,26 @@ function objet_membre($id_membre) {
     return $objets;
 }
 
+function get_emprunts_membre($id_membre) {
+    $bdd = db_connect();
+    $sql = "SELECT e.id_emprunt, o.id_objet, o.nom_objet, c.nom_categorie, e.date_emprunt, e.date_retour, e.etat_retour
+            FROM Ex_emprunt e
+            JOIN Ex_objet o ON e.id_objet = o.id_objet
+            JOIN Ex_categorie_objet c ON o.id_categorie = c.id_categorie
+            WHERE e.id_membre = $id_membre AND e.date_retour IS NULL
+            ORDER BY e.date_emprunt DESC";
+    $res = mysqli_query($bdd, $sql);
+    $emprunts = array();
+    while ($row = mysqli_fetch_assoc($res)) {
+        $emprunts[] = $row;
+    }
+    return $emprunts;
+}
+
+function retour_emprunt($id_emprunt, $etat_retour) {
+    $bdd = db_connect();
+    $date_retour = date('Y-m-d');
+    $sql = "UPDATE Ex_emprunt SET date_retour = '$date_retour', etat_retour = '$etat_retour' WHERE id_emprunt = $id_emprunt";
+    return mysqli_query($bdd, $sql);
+}
 ?>

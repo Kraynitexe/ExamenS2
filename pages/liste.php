@@ -126,6 +126,8 @@ require_once "../inc/navbar.php";
             <?php } ?>
         </div>
     </div>
+    <?php 
+    require_once '../inc/footer.php';
+    ?>
 </body>
 </html>
-<script>

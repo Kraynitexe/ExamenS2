@@ -18,6 +18,8 @@ $membre = mysqli_fetch_assoc($res);
 
 // Récupérer les objets du membre, regroupés par catégorie
 $objets = objet_membre($id_membre);
+// Liste des objets empruntés par la personne
+$emprunts = get_emprunts_membre($id_membre);
 ?>
 <body class="bg-light">
     <div class="container py-5">
@@ -38,8 +40,8 @@ $objets = objet_membre($id_membre);
                     </ul>
                 </div>
                 <div class="card shadow p-4">
-                    <h4 class="mb-3">Objets ajoutés par vous (regroupés par catégorie)</h4>
-                    <?php if (count($objets) == 0) { ?>
+                    <h4 class="mb-3">Objets ajoutés :</h4>
+                     <!-- <?php if (count($objets) == 0) { ?>
                         <div class="text-muted">Aucun objet ajouté.</div>
                     <?php } else { ?>
                         <?php foreach ($objets as $cat => $liste) { ?>
@@ -51,9 +53,52 @@ $objets = objet_membre($id_membre);
                             </ul>
                         <?php } ?>
                     <?php } ?>
+                </div> -->
+                <div class="card shadow p-4 mb-4">
+                    <h4 class="mb-3">Objets empruntés</h4>
+                    <?php if (count($emprunts) == 0) { ?>
+                        <div class="text-muted">Aucun objet emprunté actuellement.</div>
+                    <?php } else { ?>
+                        <div class="table-responsive">
+                        <table class="table table-bordered align-middle">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Nom</th>
+                                    <th>Catégorie</th>
+                                    <th>Date d'emprunt</th>
+                                    <th>Date de retour</th>
+                                    <th>Rendre</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($emprunts as $emp) { ?>
+                                <tr>
+                                    <td><?php echo $emp['nom_objet']; ?></td>
+                                    <td><?php echo $emp['nom_categorie']; ?></td>
+                                    <td><?php echo $emp['date_emprunt']; ?></td>
+                                    <td><?php echo $emp['date_retour']; ?></td>
+                                    <td>
+                                        <form method="post" action="../inc/traitements/traitement-retour.php" class="d-flex align-items-center mb-0">
+                                            <input type="hidden" name="id_emprunt" value="<?php echo $emp['id_emprunt']; ?>">
+                                            <select name="etat_retour" class="form-select form-select-sm w-auto me-2">
+                                                <option value="ok">Non abîmé</option>
+                                                <option value="abime">Abîmé</option>
+                                            </select>
+                                            <button type="submit" class="btn btn-danger btn-sm">Rendre</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
+                        </div>
+                    <?php } ?>
                 </div>
             </div>
         </div>
     </div>
+    <?php 
+    require_once '../inc/footer.php';
+    ?>
 </body>
 </html> 

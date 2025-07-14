@@ -10,7 +10,6 @@ if (!isset($_GET['id'])) {
 $id_objet = intval($_GET['id']);
 
 $bdd = db_connect();
-// Infos de l'objet
 $sql = "SELECT o.nom_objet, c.nom_categorie, o.id_membre FROM Ex_objet o JOIN Ex_categorie_objet c ON o.id_categorie = c.id_categorie WHERE o.id_objet = $id_objet";
 $res = mysqli_query($bdd, $sql);
 $objet = mysqli_fetch_assoc($res);
@@ -18,7 +17,7 @@ if (!$objet) {
     echo '<div class="alert alert-danger">Objet introuvable.</div>';
     exit;
 }
-// Images de l'objet
+
 $sql_img = "SELECT nom_image, is_principale FROM Ex_images_objet WHERE id_objet = $id_objet ORDER BY is_principale DESC, id_image ASC";
 $res_img = mysqli_query($bdd, $sql_img);
 $images = array();
@@ -31,7 +30,6 @@ while ($row = mysqli_fetch_assoc($res_img)) {
     }
 }
 if ($main_img === null) {
-    // Utiliser l'image de la catégorie si pas d'image principale
     $cat_img = strtolower($objet['nom_categorie']) . '.png';
     $cat_img_path = '../assets/images/' . $cat_img;
     if (file_exists($cat_img_path)) {
@@ -40,7 +38,6 @@ if ($main_img === null) {
         $main_img = '../assets/images/default.jpg';
     }
 }
-// Historique des emprunts
 $sql_hist = "SELECT e.date_emprunt, e.date_retour, m.nom FROM Ex_emprunt e JOIN Ex_membre m ON e.id_membre = m.id_membre WHERE e.id_objet = $id_objet ORDER BY e.date_emprunt DESC";
 $res_hist = mysqli_query($bdd, $sql_hist);
 $emprunts = array();
@@ -93,5 +90,8 @@ while ($row = mysqli_fetch_assoc($res_hist)) {
             </div>
         </div>
     </div>
+    <?php 
+    require_once '../inc/footer.php';
+    ?>
 </body>
 </html>

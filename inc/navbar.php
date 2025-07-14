@@ -9,7 +9,7 @@ require_once "header.php";
     </button>
     <?php if (isset($_SESSION['nom'])) { ?>
         <span class="navbar-text ms-3 text-white fw-bold">
-          <?php echo $_SESSION['nom']; ?>
+          <p>Bienvenue<?php echo $_SESSION['nom']; ?></p>
         </span>
       <?php } ?>
     <div class="collapse navbar-collapse" id="navbarNav">
@@ -17,9 +17,7 @@ require_once "header.php";
         <li class="nav-item">
           <a class="nav-link" href="../pages/index.php">Accueil</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="../inc/deconnexion.php">Deconnexion</a>
-        </li>
+
         <li class="nav-item">
           <a class="nav-link" href="liste.php">Liste des objets</a>
         </li>
@@ -28,6 +26,9 @@ require_once "header.php";
         </li>
         <li class="nav-item">
           <a class="nav-link" href="../pages/fiche-personne.php">Profil</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../inc/deconnexion.php">Deconnexion</a>
         </li>
       </ul>
      
