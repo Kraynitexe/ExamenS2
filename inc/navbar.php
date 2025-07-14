@@ -9,7 +9,7 @@ require_once "header.php";
     </button>
     <?php if (isset($_SESSION['nom'])) { ?>
         <span class="navbar-text ms-3 text-white fw-bold">
-          <p>Bienvenue<?php echo $_SESSION['nom']; ?></p>
+          <p>Bienvenue <?php echo $_SESSION['nom']; ?></p>
         </span>
       <?php } ?>
     <div class="collapse navbar-collapse" id="navbarNav">
