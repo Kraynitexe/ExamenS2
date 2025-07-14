@@ -19,15 +19,15 @@ CREATE TABLE Ex_objet (
     nom_objet VARCHAR(100),
     id_categorie INT,
     id_membre INT,
-    FOREIGN KEY (id_categorie) REFERENCES categorie_objet(id_categorie),
-    FOREIGN KEY (id_membre) REFERENCES membre(id_membre)
+    FOREIGN KEY (id_categorie) REFERENCES Ex_categorie_objet(id_categorie),
+    FOREIGN KEY (id_membre) REFERENCES Ex_membre(id_membre)
 );
 
 CREATE TABLE Ex_images_objet (
     id_image INT AUTO_INCREMENT PRIMARY KEY,
     id_objet INT,
     nom_image VARCHAR(255),
-    FOREIGN KEY (id_objet) REFERENCES objet(id_objet)
+    FOREIGN KEY (id_objet) REFERENCES Ex_objet(id_objet)
 );
 
 CREATE TABLE Ex_emprunt (
@@ -36,6 +36,6 @@ CREATE TABLE Ex_emprunt (
     id_membre INT,
     date_emprunt DATE,
     date_retour DATE,
-    FOREIGN KEY (id_objet) REFERENCES objet(id_objet),
-    FOREIGN KEY (id_membre) REFERENCES membre(id_membre)
+    FOREIGN KEY (id_objet) REFERENCES Ex_objet(id_objet),
+    FOREIGN KEY (id_membre) REFERENCES Ex_membre(id_membre)
 );

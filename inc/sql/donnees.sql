@@ -1,9 +1,9 @@
 -- Insertion des membres
 INSERT INTO Ex_membre (nom, date_naissance, genre, email, ville, mdp, image_profil) VALUES
-('Lova', '1990-05-12', 'F', 'alice.martin@email.com', 'Paris', 'mdp1', 'alice.jpg'),
-('Bryan', '1985-08-23', 'M', 'bob.dupont@email.com', 'Lyon', 'mdp2', 'bob.jpg'),
-('Hasina', '1992-11-03', 'F', 'claire.dubois@email.com', 'Marseille', 'mdp3', 'claire.jpg'),
-('Dahmany', '1988-02-17', 'M', 'david.leroy@email.com', 'Toulouse', 'mdp4', 'david.jpg');
+('Lova', '1990-05-12', 'M', 'lova@email.com', 'Paris', 'mdp1', ''),
+('Bryan', '1985-08-23', 'M', 'bryan@email.com', 'Lyon', 'mdp2', ''),
+('Hasina', '1992-11-03', 'M', 'hasina@email.com', 'Marseille', 'mdp3', ''),
+('Dahmany', '1988-02-17', 'M', 'dahmyan@email.com', 'Toulouse', 'mdp4', '');
 
 -- Insertion des catégories
 INSERT INTO Ex_categorie_objet (nom_categorie) VALUES

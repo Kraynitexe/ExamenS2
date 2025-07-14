@@ -7,14 +7,14 @@ $_SESSION['password']=$_POST['mdp'];
 $email=$_SESSION['email'];
 $username=$_SESSION['password'];
 
-db_connect(); 
-$sql= "INSERT INTO member (email,username) VALUES ('%s','%s')";
+$bdd = db_connect(); 
+$sql= "SELECT * FROM Ex_membre WHERE email='%s' AND mdp='%s'";
 $sql=sprintf($sql,$email,$username);
 
 $query = mysqli_query($bdd, $sql);
     if ($query) {
         header('Location: ../../pages/liste.php');
     } else {
-        echo "Erreur : " . mysqli_error($bdd);
+        echo "Erreur : information ivalide" . mysqli_error($bdd);
     }
 ?>
