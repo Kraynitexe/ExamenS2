@@ -1,8 +1,24 @@
-<nav>
-    <ul>
-        <li><a href="index.php">Accueil</a></li>
-        <li><a href="inscription.php">Inscription</a></li>
-        <li><a href="login.php">Connexion</a></li>
-        <li><a href="liste_objets.php">Liste des objets</a></li>
-    </ul>
+<?php
+require_once "header.php";
+?>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="../pages/index.php">Accueil</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="../pages/index.php">Accueil</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="deconnexion.php">Deconnexion</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="liste.php">Liste des objets</a>
+        </li>
+      </ul>
+    </div>
+  </div>
 </nav>
