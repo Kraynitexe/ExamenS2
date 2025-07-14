@@ -59,4 +59,15 @@ function filter_objets_by_categorie($objets, $categorie) {
     }
     return $result;
 }
+
+function get_image_principale($id_objet) {
+    $bdd = db_connect();
+    $sql = "SELECT nom_image FROM Ex_images_objet WHERE id_objet = $id_objet AND is_principale = 1 LIMIT 1";
+    $res = mysqli_query($bdd, $sql);
+    if ($res && $row = mysqli_fetch_assoc($res)) {
+        return $row['nom_image'];
+    } else {
+        return '../assets/images/default.jpg';
+    }
+}
 ?>

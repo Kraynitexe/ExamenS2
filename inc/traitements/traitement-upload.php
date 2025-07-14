@@ -35,6 +35,7 @@ if (count($_POST) > 0) {
 
     $main_image = null;
     $images = array();
+    $is_first = true;
     if (isset($_FILES['image_objet']) && !empty($_FILES['image_objet']['name'][0])) {
         $files = $_FILES['image_objet'];
         for ($i = 0; $i < count($files['name']); $i++) {
@@ -49,10 +50,12 @@ if (count($_POST) > 0) {
             $newName = $originalName . '_' . uniqid() . '.' . $extension;
             if (move_uploaded_file($files['tmp_name'][$i], $uploadDir . $newName)) {
                 // Enregistrer l'image dans la base
-                $sql_img = "INSERT INTO Ex_images_objet (id_objet, nom_image) VALUES ($id_objet, '$newName')";
+                $is_principale = $is_first ? 1 : 0;
+                $sql_img = "INSERT INTO Ex_images_objet (id_objet, nom_image, is_principale) VALUES ($id_objet, '$newName', $is_principale)";
                 mysqli_query($bdd, $sql_img);
-                if ($main_image === null) {
+                if ($is_first) {
                     $main_image = $newName;
+                    $is_first = false;
                 }
                 $images[] = $newName;
             }
@@ -61,7 +64,7 @@ if (count($_POST) > 0) {
     // image par defaut
     if ($main_image === null) {
         $main_image = '../../assets/images/default.jpg';
-        $sql_img = "INSERT INTO Ex_images_objet (id_objet, nom_image) VALUES ($id_objet, '$main_image')";
+        $sql_img = "INSERT INTO Ex_images_objet (id_objet, nom_image, is_principale) VALUES ($id_objet, '$main_image', 1)";
         mysqli_query($bdd, $sql_img);
     }
     // Rediriger ou afficher un message

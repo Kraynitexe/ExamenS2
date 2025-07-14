@@ -27,6 +27,7 @@ CREATE TABLE Ex_images_objet (
     id_image INT AUTO_INCREMENT PRIMARY KEY,
     id_objet INT,
     nom_image VARCHAR(255),
+    is_principale TINYINT(1) DEFAULT 0,
     FOREIGN KEY (id_objet) REFERENCES Ex_objet(id_objet)
 );
 

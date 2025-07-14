@@ -21,8 +21,8 @@
    - [ ] Moderniser et harmoniser le design avec Bootstrap (pages, formulaires, cards, navigation, etc.)
 
 6. Ajout d’un nouvel objet par un membre
-   - [ ] Permettre l’ajout d’un objet avec upload de plusieurs images
-   - [ ] Enregistrer la première image comme image principale
+   - [X] Permettre l’ajout d’un objet avec upload de plusieurs images
+   - [X] Enregistrer la première image comme image principale
    - [ ] Afficher l’image principale dans la liste des objets
    - [ ] Permettre la suppression d’images d’un objet
    - [ ] Afficher une image par défaut si aucune image n’est présente
