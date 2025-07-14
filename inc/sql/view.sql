@@ -3,7 +3,8 @@ SELECT
     o.id_objet,
     o.nom_objet,
     c.nom_categorie,
-    e.date_emprunt
+    e.date_emprunt,
+    e.date_retour
 FROM Ex_objet o
 JOIN Ex_categorie_objet c ON o.id_categorie = c.id_categorie
 LEFT JOIN Ex_emprunt e ON o.id_objet = e.id_objet;
