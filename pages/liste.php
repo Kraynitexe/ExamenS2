@@ -54,13 +54,22 @@ require_once "../inc/navbar.php";
         <div class="row row-cols-1 row-cols-md-3 g-4 mb-5">
             <?php for ($i = 0; $i < count($objets_disponibles); $i++) { ?>
                 <div class="col">
-                    <div class="card h-100 shadow-sm">
-                        <div class="card-body">
-                            <h5 class="card-title"><?php echo $objets_disponibles[$i]['nom_objet']; ?></h5>
-                            <p class="card-text"><span class="badge bg-secondary"><?php echo $objets_disponibles[$i]['nom_categorie']; ?></span></p>
-                        </div>
-                    </div>
-                </div>
+    <div class="card h-100 shadow-sm">
+        <img src="<?php echo $objets_disponibles[$i]['nom_image']; ?>" class="card-img-top" alt="<?php echo $objets_disponibles[$i]['nom_objet']; ?>">
+        <div class="card-body">
+            <h5 class="card-title"><?php echo $objets_disponibles[$i]['nom_objet']; ?></h5>
+            <p class="card-text"><span class="badge bg-secondary"><?php echo $objets_disponibles[$i]['nom_categorie']; ?></span></p>
+            <p class="card-text">
+                <span>
+                    <?php if ($objets_disponibles[$i]['date_retour'] != NULL) { ?>  
+                        <span style="color: red;">Date de retour :</span>
+                    <?php } ?>
+                    <span style="color: red;"><?php echo $objets_disponibles[$i]['date_retour']; ?></span>
+                </span>
+            </p>          
+        </div>
+    </div>
+</div>
             <?php } ?>
         </div>
     </div>
