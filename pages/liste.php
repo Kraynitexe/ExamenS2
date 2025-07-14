@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once '../inc/functions.php';
 
 // Récupérer la catégorie sélectionnée
@@ -9,18 +10,16 @@ if (isset($_GET['categorie'])) {
 
 // Récupérer les catégories
 $categories = get_categories();
-$objets_disponibles = get_objets_liste();
+$objets_liste = get_objets_liste();
+$objets_disponibles = array();
+for ($i = 0; $i < count($objets_liste); $i++) {
+    if ($objets_liste[$i]['date_retour'] == '' || $objets_liste[$i]['date_retour'] == null) {
+        $objets_disponibles[] = $objets_liste[$i];
+    }
+}
 if ($categorie_sel != '') {
     $objets_disponibles = filter_objets_by_categorie($objets_disponibles, $categorie_sel);
 }
-
-// $objets_emprunts = get_objets_emprunts();
-// $objets_deja_empruntes = array();
-// for ($i = 0; $i < count($objets_emprunts); $i++) {
-//     if ($objets_emprunts[$i]['date_emprunt'] != '') {
-//         $objets_deja_empruntes[] = $objets_emprunts[$i];
-//     }
-// }
 ?>
 <?php
 require_once "../inc/header.php";
@@ -59,15 +58,7 @@ require_once "../inc/navbar.php";
                         <div class="card-body">
                             <h5 class="card-title"><?php echo $objets_disponibles[$i]['nom_objet']; ?></h5>
                             <p class="card-text"><span class="badge bg-secondary"><?php echo $objets_disponibles[$i]['nom_categorie']; ?></span></p>
-                            <p class="card-text">
-                             <span>
-                            <?php if ($objets_disponibles[$i]['date_retour'] != NULL) { ?>  
-                             <span style="color: red;">Date de retour :</span>
-                            <?php } ?>
-                            <span style="color: red;"><?php echo $objets_disponibles[$i]['date_retour']; ?></span>
-                             </span>
-                             </p>          
-                               </div>
+                        </div>
                     </div>
                 </div>
             <?php } ?>

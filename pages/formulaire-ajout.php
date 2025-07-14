@@ -1,6 +1,11 @@
 <?php
 require_once "../inc/header.php";
 require_once "../inc/functions.php";
+session_start();
+if (!isset($_SESSION['id_membre'])) {
+    echo '<div class="alert alert-danger">Vous devez être connecté pour ajouter un objet.</div>';
+    exit;
+}
 $categories = get_categories();
 ?>
 <body class="bg-light">
@@ -23,7 +28,7 @@ $categories = get_categories();
                 </div>
                 <div class="mb-3">
                     <label for="image_objet" class="form-label">Image de l'objet :</label>
-                    <input type="file" name="image_objet" id="image_objet" class="form-control" accept="image/*">
+                    <input type="file" name="image_objet[]" id="image_objet" class="form-control" accept="image/*" multiple>
                 </div>
                 <div class="d-grid">
                     <button type="submit" class="btn btn-primary">Ajouter l'objet</button>

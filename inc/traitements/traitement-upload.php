@@ -2,7 +2,7 @@
 require_once '../../inc/functions.php';
 session_start();
 
-$uploadDir = __DIR__ . '/uploads/';
+$uploadDir = __DIR__ . '../../assets/images/uploads/';
 if (!is_dir($uploadDir)) {
     mkdir($uploadDir, 0777, true);
 }
