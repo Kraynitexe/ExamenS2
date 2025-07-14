@@ -1,0 +1,24 @@
+1. Création de la base de données
+   - [X] Créer la table membre (id_membre, nom, date de naissance, genre, email, ville, mdp, image_profil)
+   - [x ] Créer la table categorie_objet (id_categorie, nom_categorie)
+   - [X ] Créer la table objet (id_objet, nom_objet, id_categorie, id_membre)
+   - [X ] Créer la table images_objet (id_image, id_objet, nom_image)
+   - [X ] Créer la table emprunt (id_emprunt, id_objet, id_membre, date_emprunt, date_retour)
+
+2. Insertion de données de test
+   - [ ] Insérer 4 membres
+   - [ ] Insérer 4 catégories (esthétique, bricolage, mécanique, cuisine)
+   - [ ] Insérer 10 objets par membre (répartis sur les catégories)
+   - [ ] Insérer 10 emprunts
+
+3. Développement des pages principales
+   - [ ] Page d'inscription
+   - [ ] Page de login
+   - [ ] Page de liste des objets (afficher date de retour si emprunt en cours)
+   - [ ] Filtre par catégorie sur la liste des objets
+
+4. Tests et vérifications
+   - [ ] Vérifier la cohérence des données
+   - [ ] Tester l'inscription et la connexion
+   - [ ] Tester l'affichage et le filtrage des objets
+   - [ ] Tester l'affichage des emprunts en cours 
