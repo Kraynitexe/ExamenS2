@@ -22,10 +22,11 @@ function db_connect(){
 
 function get_objets_liste() {
     $bdd = db_connect();
-    $sql = "SELECT o.id_objet, o.nom_objet, c.nom_categorie, e.date_emprunt, e.date_retour
+    $sql = "SELECT o.id_objet, o.nom_objet, c.nom_categorie, e.date_emprunt, e.date_retour, i.id_image, i.nom_image
             FROM Ex_objet o
             JOIN Ex_categorie_objet c ON o.id_categorie = c.id_categorie
-            LEFT JOIN Ex_emprunt e ON o.id_objet = e.id_objet";
+            LEFT JOIN Ex_emprunt e ON o.id_objet = e.id_objet
+            LEFT JOIN Ex_images_objet i ON o.id_objet = i.id_objet"; 
     $result = mysqli_query($bdd, $sql);
     $objets = array();
     if ($result) {
